@@ -1,0 +1,87 @@
+<!-- ベーステンプレートを適用する -->
+{% extends 'base.html' %}
+<!-- ヘッダー情報のページタイトルを設定する -->
+{% block title %}Sign up{% endblock %}
+
+    {% block contents %}
+    <!-- Bootstrapのグリッドシステムを変更 -->
+    <hr> <!-- 水平の横線を描画 -->
+    <!-- 常に幅を一定にする -->
+    <div class="container">
+        <!-- 行(カラム)を配置 -->
+        <div class="row">
+            <!-- 列の左右(カラム間に隙間を開ける)に余白offset-2を入れる -->
+            <div class="col offset-2">
+                <h3>サインアップ</h3>
+                <!-- サインアップのフォームを配置 -->
+                <form method="post">
+                    {% csrf_token %} <!-- 脆弱性対策 -->
+                    <!-- formからフィールドを取り出す -->
+                    {% for field in form %} <!-- 各フィールドのプロパティを取得 -->
+                    <p>
+                        <!-- ラベルを出力(ラベルのHTMLタグ) -->
+                        {{field.label_tag}}<br>
+                        <!-- インプットタグを出力(ラベル用のテキスト) -->
+                        {{field}}
+                        <!-- help_textを出力(説明文言) -->
+                        {% if field.help_text %}     <!--メールや名前を表示(small=一回り小さいテキスト) -->
+                        <small style="color:gray">{{field.help_text}}</small>
+                        {% endif %}
+                        <!-- エラー発生時のテキストerrorsを出力(エラーメッセージの集まり) -->
+                        {% for error in field.errors %}
+                            <p style="color:red">{{error}}</p>
+                        {% endfor %}
+                    </p>
+                    {% endfor %}
+                    <p style="color:red">
+                    ※メールアドレスはパスワードをリセットする際に必要になりますので、登録をお願いします。
+                    </p>
+                    <!-- sign upボタンを出力 -->
+                    <input type="submit" class="btn btn-dark" value="Sign up">
+                </form>
+                <!-- トップページのリンクテキスト -->
+                <br>
+                <p><a href="{% url 'photo:index' %}">
+                    トップぺージに戻る</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+
+                
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    

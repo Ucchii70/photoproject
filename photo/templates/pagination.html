@@ -1,0 +1,61 @@
+<!-- ページの分割表示のためのテンプレート -->
+<!-- cssのpaginationクラスを適用し、ページネーションのアイコンを水平方向の中央に配置 -->
+<ul class="pagination"
+    style="justify-content: center">
+    <!-- 前ページを表示するアイコンとリンクの設定, ページネーションされたPageオブジェクトをorderby_recordsで取得, 
+         Page.has_previous: もし前のページが存在する場合は(True) -->
+    {% if page_obj.has_previous %}
+    <!-- 前のページが存在する場合は、そのページへのリンクが設定されたアイコン[<<]を表示
+        Page.previous_page_number:直前のページ番号
+        Bootstrapのページネーションスタイルに対応するpage-itemクラスを適用 -->
+    <li class="page-item">
+        <!-- ユーザーが前のページに移動できるようにするためのリンクを定義
+             page-link = Bootstrapのスタイルを適用するためのクラス, リンクがページネーションコンポーネントの一部として見えるようになる
+             href = 前のページ番号のリンク先のURLを指定
+             aria-label = スクリーンリーダー(障害のある方などに音声で読み上げる)向けに前のページへのリンクのラベルを提供 -->
+        <a class="page-link" 
+            href="?page={{page_obj.previous_page_number}}"
+            aria-label="Previous">
+            <!-- リンク内に表示されるアイコン。ここではUnicode文字「◀」（左矢印）が使用
+            　　　<span>は文章内の一部分だけをまとめて指定する。アンダーバーや文字色の変更など
+                 aria-hidden = trueに設定されると、スクリーンリーダーはこの要素を無視する。視覚的な装飾のため
+                 &laguo; HTMLエンティティを使用して左矢印の記号を描写(特殊文字) -->
+            <span aria-hidden="true">&laquo;</span> 
+        </a>
+    </li>
+    {% endif %}
+    <!-- 全てのページについてページ番号のアイコンを表示 
+    　　　pajinator.page_range:[1,2,3,4]のように1から始まるページを返す
+         pagge_obj.paginator.page_rangeとして取得
+        ブロックパラメーターnumに順次取り出される -->
+    {% for num in page_obj.paginator.page_range %} <!-- ページネーションの全てのページ番号に対してループ -->
+        <!-- 各ページのアイコンを出力
+        page.number:引き渡されたページのページ番号を返す -->
+        {% if page_obj.number == num %}
+        <!-- 今のページ番号と引き渡されたページ番号と一致する場合は
+             ページ番号のアイコン(アクティブ状態)を表示(リンクは設置しない) -->
+        <li class="page-item active">
+            <span class="page-link">{{num}}</span> <!-- アクティブなページ番号がリンクではなく、テキストとして表示 -->
+        </li>
+        <!-- ページ番号が引き渡されたページのページ番号と一致しない場合 -->
+        {% else %}
+        <!-- ページ番号のアイコン(アクティブ状態ではない)にリンクを設定して表示 -->
+        <li class="page-item">
+            <a class="page-link" href="?page={{num}}">{{num}}</a> <!-- {{num}}はループ中の現在のページ番号 -->
+        </li>
+        {% endif %}
+    {% endfor %}
+    <!-- 次のページへのリンクを示すアイコンの表示
+         Page.has_next:次のページがある場合にTrueを返す -->
+    {% if page_obj.has_next %}
+    <!-- 次ページが存在する場合はリンクを設定したアイコンを表示
+         page.next_page_number:次ページ番号を返す -->
+    <li class="page-item">
+        <a class="page-link"
+            href="?page={{page_obj.next_page_number}}"
+            aria-label="Next">
+            <span aria-hidden="true">&raquo;</span> 
+        </a>
+    </li>
+    {% endif %}
+</ul>

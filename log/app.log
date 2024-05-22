@@ -1,0 +1,4 @@
+2024-04-04 16:11:12,225 [INFO] 8126 140704400916736 /opt/anaconda3/envs/photo_app/lib/python3.11/site-packages/django/utils/autoreload.py:677 Watching for file changes with StatReloader
+2024-04-04 16:12:30,955 [INFO] 8126 140704400916736 /opt/anaconda3/envs/photo_app/lib/python3.11/site-packages/django/utils/autoreload.py:266 /Users/uchiyamachikarakana/Desktop/djangoprojects/photoproject/photo/views.py changed, reloading.
+2024-04-04 16:12:31,219 [INFO] 8136 140704400916736 /opt/anaconda3/envs/photo_app/lib/python3.11/site-packages/django/utils/autoreload.py:677 Watching for file changes with StatReloader
+2024-04-04 16:12:37,443 [INFO] 8136 140704400916736 /opt/anaconda3/envs/photo_app/lib/python3.11/site-packages/django/utils/autoreload.py:266 /Users/uchiyamachikarakana/Desktop/djangoprojects/photoproject/photoproject/settings.py changed, reloading.
